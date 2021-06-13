@@ -10,11 +10,26 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ControllerErrorHandler {
     @ExceptionHandler(CustomValidationException.class)
-    public ResponseEntity<String> handleClientInput(CustomValidationException e) {
-        return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Error> handleClientInput(CustomValidationException e) {
+        return new ResponseEntity<>(new Error(e.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<String> handleRuntimeError(EntityNotFoundException e) {
-        return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Error> handleRuntimeError(EntityNotFoundException e) {
+        return new ResponseEntity<>(new Error(e.getLocalizedMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Error> handleRuntimeError(RuntimeException e) {
+        if(e.getLocalizedMessage().contains("Cannot deserialize value of type")) {
+            return new ResponseEntity<>(new Error("Form contain  incompatible types"), HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(new Error(e.getLocalizedMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Error> handleRuntimeError(Exception e) {
+        return new ResponseEntity<>(new Error(e.getLocalizedMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -1,6 +1,5 @@
 package org.labs.ej.stockMarket.dataSource.repository;
 
-import org.labs.ej.stockMarket.dataSource.exception.CustomValidationException;
 import org.labs.ej.stockMarket.dataSource.exception.EntityNotFoundException;
 import org.labs.ej.stockMarket.dataSource.model.StockData;
 import org.labs.ej.stockMarket.dataSource.validator.Validator;
@@ -12,6 +11,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class MemoryDataStore implements StockDataStore {
+    //TODO REVIEW here need to inject dataGuy
     private List<StockData> stockDataList;
     private final IdGenerator idGenerator;
     private final Validator<StockData> validator;
@@ -36,6 +36,7 @@ public class MemoryDataStore implements StockDataStore {
         StockData updateStock = getStock(stockData.getId());
         this.validator.validatePut(stockData);
         updateStock.setCurrentPrice(stockData.getCurrentPrice());
+        updateStock.setLastUpdate(Timestamp.valueOf(LocalDateTime.now()));
     }
 
     @Override
@@ -48,7 +49,8 @@ public class MemoryDataStore implements StockDataStore {
         try {
             return stockDataList.stream()
                     .filter(stockData -> stockData.getId().equals(id))
-                    .findFirst().orElseThrow();
+                    .findFirst()
+                    .orElseThrow();
         } catch (NoSuchElementException e) {
             throw new EntityNotFoundException("Attempt to get stock has failed, stock.id=" + id + " was not found");
         }

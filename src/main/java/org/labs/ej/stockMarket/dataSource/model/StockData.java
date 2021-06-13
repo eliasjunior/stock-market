@@ -56,6 +56,8 @@ public class StockData {
         public Builder(Long id) {
             this.id = id;
         }
+        public Builder() {
+        }
 
         public StockData.Builder setId(Long id) {
             this.id = id;
