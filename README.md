@@ -66,7 +66,7 @@ There is a basic CI with Git Actions that build, and test the project once chang
 
 ## External libs
 
-I opted to not use very handy tools like [lombok](https://projectlombok.org/features/all) or [Mapstruct](https://mapstruct.org/),
+I opted to not use handy tools like [lombok](https://projectlombok.org/features/all) or [Mapstruct](https://mapstruct.org/),
 I wanted to avoid libs for this project only, in the real world I'd discuss with the team the pros and cons of each external library.
 
 ### UI
