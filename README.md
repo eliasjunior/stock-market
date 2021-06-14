@@ -1,3 +1,5 @@
+[![build](https://github.com/eliasjunior/stock-market/actions/workflows/maven.yml/badge.svg)](https://github.com/eliasjunior/stock-market/actions/workflows/maven.yml)
+
 # Stock market
 
 Rest API based on the SOLID principals
