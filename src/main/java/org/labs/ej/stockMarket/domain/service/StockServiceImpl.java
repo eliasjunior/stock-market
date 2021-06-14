@@ -31,6 +31,7 @@ public class StockServiceImpl implements StockService {
             StockData stockData = stockMapper.convertStockToStockData(stock);
             return stockMapper.convertStockDataToStock(stockDataStore.save(stockData));
         } catch (CustomValidationException e) {
+            logger.debug(e.getLocalizedMessage());
             throw new CustomValidationException(e.getLocalizedMessage());
         } catch (Exception e) {
             logger.debug(e.getLocalizedMessage());
@@ -45,6 +46,7 @@ public class StockServiceImpl implements StockService {
             StockData stockData = stockMapper.convertStockToStockData(stock);
             stockDataStore.update(stockData);
         } catch (CustomValidationException e) {
+            logger.debug(e.getLocalizedMessage());
             throw new CustomValidationException(e.getLocalizedMessage());
         } catch (RuntimeException e) {
             logger.debug(e.getLocalizedMessage());
