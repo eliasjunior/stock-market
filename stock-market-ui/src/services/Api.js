@@ -24,6 +24,10 @@ export async function put(resource, stock) {
       "Content-Type": "application/json",
     },
   });
+  if (res.status !== SUCCESS_NO_CONTENT) {
+    const responseBody = await res.json();
+    return responseObj(responseBody, res.status);
+  }
   return responseObj({}, res.status);
 }
 

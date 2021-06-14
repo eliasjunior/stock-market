@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class MemoryDataStore implements StockDataStore {
-    private List<StockData> inMemoryList;
+    private List<StockData> inMemoryList; // we could inject another type of persistence here
     private final IdGenerator idGenerator;
-
     private final Logger logger;
 
-
+    // avoid create dependencies in the class and taking advantage of dependency
+    // injection
     public MemoryDataStore(List<StockData> inMemoryList, IdGenerator idGenerator,
                            Logger logger) {
         this.inMemoryList = inMemoryList;

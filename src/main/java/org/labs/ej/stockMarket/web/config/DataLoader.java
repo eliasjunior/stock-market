@@ -16,7 +16,7 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        // it could be from the disk or network
+        // it could load from the disk or network
         Stock stock = new Stock.Builder()
                 .setName("Adidas")
                 .setCurrentPrice("22")

@@ -72,9 +72,21 @@ I used new Javascript features [ES6/ES7](https://developer.mozilla.org/en-US/doc
 
 Used bootstrap for css also to speed up the development.
 
+<a href="https://github.com/eliasjunior/stock-market/blob/main/images/ui-file-structure.png">
+   <img src="img/ui-file-structure.png" alt="file"  >
+</a>
+
+
+
+React app file structure
+
+Components -> I tried to break app into small components for reusability and readability.
+
+config.js -> react create app build takes care of add the values at build time.
+
 ## Observation
 
-The integration tests are in (test/http-client) you can use postman or similar tool, I've used a IntelliJ built-in plugin.
+There some tests integration tests(run manual) in (test/http-client) you can use postman or similar tool, I've used a IntelliJ built-in plugin.
 
 The design of the code is to make easy to test, there are just a few units tests for demonstration.
 

@@ -1,5 +1,6 @@
 package org.labs.ej.stockMarket.domain.entity;
 
+// This class acts as a DTO, but named as entity/stock instead.
 public class Stock {
     private String id;
     private String name;
