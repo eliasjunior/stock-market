@@ -17,6 +17,9 @@ public class StockMapperImpl implements StockMapper {
     }
 
     public List<Stock> convertStockDataListToStockList(List<StockData> stockDataList) {
+        if(stockDataList == null) {
+            throw new CustomValidationException("Attempt convert stockData has failed! stockData cannot be null");
+        }
         try {
             return stockDataList.stream().map(stockData -> new Stock.Builder()
                     .setId(String.valueOf(stockData.getId()))
@@ -33,6 +36,9 @@ public class StockMapperImpl implements StockMapper {
 
     @Override
     public Stock convertStockDataToStock(StockData stockData) {
+        if(stockData == null) {
+            throw new CustomValidationException("Attempt convert stockData has failed! stockData cannot be null");
+        }
         try {
             return new Stock.Builder()
                     .setId(String.valueOf(stockData.getId()))
@@ -48,6 +54,9 @@ public class StockMapperImpl implements StockMapper {
 
     @Override
     public StockData convertStockToStockData(Stock stock) {
+        if(stock == null) {
+            throw new CustomValidationException("Attempt convert stock has failed! stock cannot be null");
+        }
         try {
             return new StockData.Builder(getLongValue(stock.getId()))
                     .setName(stock.getName())

@@ -1,4 +1,4 @@
-package org.labs.ej.stockMarket.dataSource.validator;
+package org.labs.ej.stockMarket.domain.validator;
 
 import org.labs.ej.stockMarket.dataSource.exception.CustomValidationException;
 import org.labs.ej.stockMarket.domain.entity.Stock;

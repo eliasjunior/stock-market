@@ -2,7 +2,7 @@
 GET http://localhost:8080/api/stocks
 Accept: application/json
 
-###
+### need provide correct id
 GET http://localhost:8080/api/stocks/11
 Accept: application/json
 
@@ -15,13 +15,13 @@ Content-Type: application/json
   "currentPrice": "2.0"
 }
 
-###
+### need provide correct id
 PUT  http://localhost:8080/api/stocks
 Content-Type: application/json
 
 {
   "currentPrice": "11.0",
-  "id": 5898097593576014479
+  "id": "1"
 }
 
 
