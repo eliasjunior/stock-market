@@ -1,16 +1,14 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-export default function Stock({ name, currentPrice, lastUpdate, id }) {
-  const updateStock = (id) => {
-    console.log(id);
-  };
+export default function Stock({ stock, onUpdate }) {
+  const { name, currentPrice, lastUpdate, id} = stock;
   return (
     <tr>
       <td>{name}</td>
       <td>{currentPrice}</td>
       <td>{lastUpdate}</td>
       <td>
-        <Button onClick={() => updateStock(id)}>Update</Button>
+        <Button onClick={() => onUpdate({  name, currentPrice, id  })}>Update</Button>
       </td>
     </tr>
   );

@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import StockList from "../components/StockList";
 import { get } from "../services/Api";
 import { Button, Jumbotron } from "react-bootstrap";
-import StockModal from "../components/Modal";
+import StockModal from "../components/StockModal";
 
 function App() {
   const [stockList, setStockList] = useState([]);
   const [show, setShow] = useState(false);
+  const [currentStock, setCurrentStock] = useState({});
   const addStock = () => setShow(true);
 
   useEffect(() => {
@@ -22,19 +23,24 @@ function App() {
     }
   }
   const handleCloseModal = (show) => {
+    setCurrentStock({});
     setShow(show);
+  };
+  const handleStockUpdate = async (stock) => {
+    setCurrentStock(stock);
+    setShow(true);
   };
   return (
     <div className="main">
       <StockModal
-        data={{ name: "", price: "" }}
+        data={currentStock}
         show={show}
         onClose={handleCloseModal}
       ></StockModal>
       <Jumbotron>
         <h1>Stock Market</h1>
-        <p>Stock information, create new </p>
-        <StockList stocks={stockList}></StockList>
+        <p>Stock information </p>
+        <StockList stocks={stockList} onUpdate={handleStockUpdate}></StockList>
         <Button onClick={() => addStock()}>Add</Button>
       </Jumbotron>
     </div>

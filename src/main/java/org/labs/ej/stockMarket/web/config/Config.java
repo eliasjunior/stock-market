@@ -1,31 +1,33 @@
 package org.labs.ej.stockMarket.web.config;
 
-import org.labs.ej.stockMarket.dataSource.model.StockData;
 import org.labs.ej.stockMarket.dataSource.repository.MemoryDataStore;
 import org.labs.ej.stockMarket.dataSource.repository.StockDataStore;
 import org.labs.ej.stockMarket.dataSource.validator.StockValidator;
 import org.labs.ej.stockMarket.domain.mapper.StockMapper;
 import org.labs.ej.stockMarket.domain.mapper.StockMapperImpl;
+import org.labs.ej.stockMarket.domain.service.StockService;
+import org.labs.ej.stockMarket.domain.service.StockServiceImpl;
 import org.labs.ej.stockMarket.domain.util.JavaIDGenerator;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 public class Config {
+    @Value("${allowedHost}")
+    String allowedHosts;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                final String[] HOSTS_ALLOWED = {"http://localhost:3000"};
+                final String[] HOSTS_ALLOWED = {allowedHosts};
                 registry.addMapping("/**")
                         .allowedMethods("*")
                         .allowedOrigins(HOSTS_ALLOWED);
@@ -34,36 +36,17 @@ public class Config {
     }
 
     @Bean
-    public StockDataStore createStoreDataStore() {
-        StockDataStore stockDataStore =
-                new MemoryDataStore(new ArrayList<>(), new JavaIDGenerator(), new StockValidator());
-        List<StockData> stockDataList = getListFromSomeWhere();
-        stockDataList.forEach(stockDataStore::save);
-        return stockDataStore;
+    public StockService createStockService() {
+        return new StockServiceImpl(createStoreDataStore(), createStockMapper(),
+                LoggerFactory.getLogger(StockServiceImpl.class), new StockValidator());
     }
 
-    @Bean
-    public StockMapper createStockMapper() {
-        return new StockMapperImpl();
+    private StockMapper createStockMapper() {
+        return new StockMapperImpl(LoggerFactory.getLogger(StockMapperImpl.class));
     }
 
-    private List<StockData> getListFromSomeWhere() {
-        StockData stockData = new StockData.Builder()
-                .setName("Adidas")
-                .setCurrentPrice(22.0)
-                .setLastUpdate(Timestamp.valueOf(LocalDateTime.now()))
-                .build();
-
-        StockData stockData2 = new StockData.Builder()
-                .setName("Nike")
-                .setCurrentPrice(21.4)
-                .setLastUpdate(Timestamp.valueOf(LocalDateTime.now()))
-                .build();
-
-        List<StockData> list = new ArrayList<>();
-        list.add(stockData);
-        list.add(stockData2);
-        return list;
+    private StockDataStore createStoreDataStore() {
+        return new MemoryDataStore(new ArrayList<>(), new JavaIDGenerator(),
+                LoggerFactory.getLogger(StockDataStore.class));
     }
-
 }

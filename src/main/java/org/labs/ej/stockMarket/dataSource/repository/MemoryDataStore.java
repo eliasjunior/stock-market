@@ -2,8 +2,8 @@ package org.labs.ej.stockMarket.dataSource.repository;
 
 import org.labs.ej.stockMarket.dataSource.exception.EntityNotFoundException;
 import org.labs.ej.stockMarket.dataSource.model.StockData;
-import org.labs.ej.stockMarket.dataSource.validator.Validator;
 import org.labs.ej.stockMarket.domain.util.IdGenerator;
+import org.slf4j.Logger;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -11,48 +11,63 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class MemoryDataStore implements StockDataStore {
-    //TODO REVIEW here need to inject dataGuy
-    private List<StockData> stockDataList;
+    private List<StockData> inMemoryList;
     private final IdGenerator idGenerator;
-    private final Validator<StockData> validator;
 
-    public MemoryDataStore(List<StockData> stockDataList, IdGenerator idGenerator, Validator<StockData> validator) {
-        this.stockDataList = stockDataList;
+    private final Logger logger;
+
+
+    public MemoryDataStore(List<StockData> inMemoryList, IdGenerator idGenerator,
+                           Logger logger) {
+        this.inMemoryList = inMemoryList;
         this.idGenerator = idGenerator;
-        this.validator = validator;
+        this.logger = logger;
     }
 
     @Override
     public StockData save(StockData stockData) {
-        stockData.setId(Long.valueOf(idGenerator.generateId()));
-        stockData.setLastUpdate(Timestamp.valueOf(LocalDateTime.now()));
-        this.validator.validatePost(stockData);
-        stockDataList.add(stockData);
-        return stockData;
+        try {
+            stockData.setId(idGenerator.generateId());
+            stockData.setLastUpdate(Timestamp.valueOf(LocalDateTime.now()));
+            inMemoryList.add(stockData);
+            return stockData;
+        } catch (RuntimeException e) {
+            this.logger.debug(e.getLocalizedMessage());
+            throw new RuntimeException("Attempt to save stock has failed, " + e.getLocalizedMessage());
+        }
     }
 
     @Override
     public void update(StockData stockData) {
-        StockData updateStock = getStock(stockData.getId());
-        this.validator.validatePut(stockData);
-        updateStock.setCurrentPrice(stockData.getCurrentPrice());
-        updateStock.setLastUpdate(Timestamp.valueOf(LocalDateTime.now()));
+        try {
+            StockData updateStock = getStock(stockData.getId());
+            updateStock.setCurrentPrice(stockData.getCurrentPrice());
+            updateStock.setLastUpdate(Timestamp.valueOf(LocalDateTime.now()));
+            updateStock.setName(stockData.getName());
+        } catch (RuntimeException e) {
+            this.logger.debug(e.getLocalizedMessage());
+            throw new RuntimeException("Attempt to update stock has failed, " + e.getLocalizedMessage());
+        }
     }
 
     @Override
     public List<StockData> getStocks() {
-        return stockDataList;
+        return inMemoryList;
     }
 
     @Override
     public StockData getStock(Long id) {
         try {
-            return stockDataList.stream()
+            return inMemoryList.stream()
                     .filter(stockData -> stockData.getId().equals(id))
                     .findFirst()
                     .orElseThrow();
         } catch (NoSuchElementException e) {
+            this.logger.debug(e.getLocalizedMessage());
             throw new EntityNotFoundException("Attempt to get stock has failed, stock.id=" + id + " was not found");
+        } catch (RuntimeException e) {
+            this.logger.debug(e.getLocalizedMessage());
+            throw new RuntimeException("Attempt to retrieve stock has failed, " + e.getLocalizedMessage());
         }
     }
 }

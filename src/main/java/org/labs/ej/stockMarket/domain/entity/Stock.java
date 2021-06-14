@@ -1,14 +1,12 @@
 package org.labs.ej.stockMarket.domain.entity;
 
-import java.sql.Timestamp;
-
 public class Stock {
-    private Long id;
+    private String id;
     private String name;
-    private Double currentPrice;
-    private Timestamp lastUpdate;
+    private String currentPrice;
+    private String lastUpdate;
 
-    private Stock(Long id, String name, Double currentPrice, Timestamp lastUpdate) {
+    private Stock(String id, String name, String currentPrice, String lastUpdate) {
         this.id = id;
         this.name = name;
         this.currentPrice = currentPrice;
@@ -16,16 +14,12 @@ public class Stock {
     }
 
     public static class Builder {
-        private Long id;
+        private String id;
         private String name;
-        private Double currentPrice;
-        private Timestamp lastUpdate;
+        private String currentPrice;
+        private String lastUpdate;
 
-        public Builder(Long id) {
-            this.id = id;
-        }
-
-        public Builder setId(Long id) {
+        public Builder setId(String id) {
             this.id = id;
             return this;
         }
@@ -35,12 +29,12 @@ public class Stock {
             return this;
         }
 
-        public Builder setCurrentPrice(Double currentPrice) {
+        public Builder setCurrentPrice(String currentPrice) {
             this.currentPrice = currentPrice;
             return this;
         }
 
-        public Builder setLastUpdate(Timestamp lastUpdate) {
+        public Builder setLastUpdate(String lastUpdate) {
             this.lastUpdate = lastUpdate;
             return this;
         }
@@ -50,11 +44,11 @@ public class Stock {
         }
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -62,12 +56,16 @@ public class Stock {
         return name;
     }
 
-    public Double getCurrentPrice() {
+    public String getCurrentPrice() {
         return currentPrice;
     }
 
-    public Timestamp getLastUpdate() {
+    public String getLastUpdate() {
         return lastUpdate;
+    }
+
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     @Override

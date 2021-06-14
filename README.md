@@ -16,6 +16,13 @@ Data -> create a new module ? not now
 Mapper entity > web Entity, why not
 
 External libs, lombok why not
+
+TODO add logs
+
+Format price display UI
+
 ## UI
 
+2147869945921227070
+2147869945921227000
 

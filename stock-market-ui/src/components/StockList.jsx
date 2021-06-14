@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import Stock from "./Stock";
 
-export default function StockList({ stocks }) {
+export default function StockList({ stocks, onUpdate }) {
   if (stocks.length === 0) {
     return <div className="loading">LOADING ...</div>;
   }
@@ -18,7 +18,7 @@ export default function StockList({ stocks }) {
       </thead>
       <tbody>
         {stocks.map((stock) => (
-          <Stock key={stock.id} {...stock}></Stock>
+          <Stock key={stock.id} stock={stock} onUpdate={onUpdate}></Stock>
         ))}
       </tbody>
     </Table>

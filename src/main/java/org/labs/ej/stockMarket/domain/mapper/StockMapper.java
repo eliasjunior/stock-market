@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface StockMapper {
     List<Stock> convertStockDataListToStockList(List<StockData> stockDataList);
-    List<StockData> convertStockListToStockDataList(List<Stock> stockList);
     Stock convertStockDataToStock(StockData stockData);
     StockData convertStockToStockData(Stock stock);
 }

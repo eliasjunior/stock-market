@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "name": "Waters",
-  "currentPrice": 2.0
+  "currentPrice": "2.0"
 }
 
 ###
@@ -20,8 +20,8 @@ PUT  http://localhost:8080/api/stocks
 Content-Type: application/json
 
 {
-  "currentPrice": 11.0,
-  "id": 11
+  "currentPrice": "11.0",
+  "id": 5898097593576014479
 }
 
 

@@ -2,6 +2,7 @@ package org.labs.ej.stockMarket.web.controller;
 
 import org.labs.ej.stockMarket.dataSource.exception.CustomValidationException;
 import org.labs.ej.stockMarket.dataSource.exception.EntityNotFoundException;
+import org.labs.ej.stockMarket.dataSource.model.Error;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,7 +22,7 @@ public class ControllerErrorHandler {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Error> handleRuntimeError(RuntimeException e) {
-        if(e.getLocalizedMessage().contains("Cannot deserialize value of type")) {
+        if (e.getLocalizedMessage().contains("Cannot deserialize value of type")) {
             return new ResponseEntity<>(new Error("Form contain  incompatible types"), HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new Error(e.getLocalizedMessage()), HttpStatus.NOT_FOUND);
