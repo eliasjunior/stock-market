@@ -1,6 +1,6 @@
 package org.labs.ej.stockMarket.domain.validator;
 
-import org.labs.ej.stockMarket.dataSource.exception.CustomValidationException;
+import org.labs.ej.stockMarket.domain.exception.CustomValidationException;
 import org.labs.ej.stockMarket.domain.entity.Stock;
 
 import java.util.Objects;

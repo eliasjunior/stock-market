@@ -1,4 +1,4 @@
-package org.labs.ej.stockMarket.dataSource.model;
+package org.labs.ej.stockMarket.data.model;
 
 public class Error {
     public String getMessage() {

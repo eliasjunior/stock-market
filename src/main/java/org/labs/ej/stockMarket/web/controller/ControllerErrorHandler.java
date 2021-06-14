@@ -1,8 +1,8 @@
 package org.labs.ej.stockMarket.web.controller;
 
-import org.labs.ej.stockMarket.dataSource.exception.CustomValidationException;
-import org.labs.ej.stockMarket.dataSource.exception.EntityNotFoundException;
-import org.labs.ej.stockMarket.dataSource.model.Error;
+import org.labs.ej.stockMarket.domain.exception.CustomValidationException;
+import org.labs.ej.stockMarket.domain.exception.EntityNotFoundException;
+import org.labs.ej.stockMarket.data.model.Error;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

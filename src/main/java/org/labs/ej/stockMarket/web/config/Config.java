@@ -1,7 +1,7 @@
 package org.labs.ej.stockMarket.web.config;
 
-import org.labs.ej.stockMarket.dataSource.repository.MemoryDataStore;
-import org.labs.ej.stockMarket.dataSource.repository.StockDataStore;
+import org.labs.ej.stockMarket.data.repository.dataSource.MemoryDataStore;
+import org.labs.ej.stockMarket.data.repository.StockDataStore;
 import org.labs.ej.stockMarket.domain.validator.StockValidator;
 import org.labs.ej.stockMarket.domain.mapper.StockMapper;
 import org.labs.ej.stockMarket.domain.mapper.StockMapperImpl;

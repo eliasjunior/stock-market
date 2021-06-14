@@ -1,6 +1,6 @@
-package org.labs.ej.stockMarket.dataSource.repository;
+package org.labs.ej.stockMarket.data.repository;
 
-import org.labs.ej.stockMarket.dataSource.model.StockData;
+import org.labs.ej.stockMarket.data.model.StockData;
 
 import java.util.List;
 

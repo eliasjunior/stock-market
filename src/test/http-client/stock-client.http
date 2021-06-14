@@ -20,8 +20,9 @@ PUT  http://localhost:8080/api/stocks
 Content-Type: application/json
 
 {
-  "currentPrice": "11.0",
-  "id": "1"
+  "name": "new Water",
+  "currentPrice": "1991.0",
+  "id": "1417018421482309265"
 }
 
 

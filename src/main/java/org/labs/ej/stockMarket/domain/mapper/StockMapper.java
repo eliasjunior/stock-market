@@ -1,6 +1,6 @@
 package org.labs.ej.stockMarket.domain.mapper;
 
-import org.labs.ej.stockMarket.dataSource.model.StockData;
+import org.labs.ej.stockMarket.data.model.StockData;
 import org.labs.ej.stockMarket.domain.entity.Stock;
 
 import java.util.List;

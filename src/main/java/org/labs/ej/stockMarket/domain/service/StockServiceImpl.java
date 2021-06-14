@@ -1,8 +1,8 @@
 package org.labs.ej.stockMarket.domain.service;
 
-import org.labs.ej.stockMarket.dataSource.exception.CustomValidationException;
-import org.labs.ej.stockMarket.dataSource.model.StockData;
-import org.labs.ej.stockMarket.dataSource.repository.StockDataStore;
+import org.labs.ej.stockMarket.domain.exception.CustomValidationException;
+import org.labs.ej.stockMarket.data.model.StockData;
+import org.labs.ej.stockMarket.data.repository.StockDataStore;
 import org.labs.ej.stockMarket.domain.validator.Validator;
 import org.labs.ej.stockMarket.domain.entity.Stock;
 import org.labs.ej.stockMarket.domain.mapper.StockMapper;

@@ -88,7 +88,7 @@ config.js -> react create app build takes care of add the values at build time.
 
 ## Observation
 
-There some tests integration tests(run manual) in (test/http-client) you can use postman or similar tool, I've used a IntelliJ built-in plugin.
+There are some integration tests(to run manual) in (test/http-client) you can use postman or similar tool, I've used a IntelliJ built-in plugin.
 
 The design of the code is to make easy to test, there are just a few units tests for demonstration.
 

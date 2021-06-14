@@ -1,20 +1,15 @@
 package org.labs.ej.stockMarket.dataSource.repository;
 
 import org.junit.jupiter.api.Test;
-import org.labs.ej.stockMarket.dataSource.exception.EntityNotFoundException;
-import org.labs.ej.stockMarket.dataSource.model.StockData;
-import org.labs.ej.stockMarket.domain.mapper.StockMapper;
-import org.labs.ej.stockMarket.domain.mapper.StockMapperImpl;
-import org.labs.ej.stockMarket.domain.service.StockService;
-import org.labs.ej.stockMarket.domain.service.StockServiceImpl;
+import org.labs.ej.stockMarket.domain.exception.EntityNotFoundException;
+import org.labs.ej.stockMarket.data.model.StockData;
+import org.labs.ej.stockMarket.data.repository.StockDataStore;
+import org.labs.ej.stockMarket.data.repository.dataSource.MemoryDataStore;
 import org.labs.ej.stockMarket.domain.util.IdGenerator;
-import org.labs.ej.stockMarket.domain.util.JavaIDGenerator;
-import org.labs.ej.stockMarket.domain.validator.Validator;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;

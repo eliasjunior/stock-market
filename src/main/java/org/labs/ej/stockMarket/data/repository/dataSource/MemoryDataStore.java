@@ -1,7 +1,8 @@
-package org.labs.ej.stockMarket.dataSource.repository;
+package org.labs.ej.stockMarket.data.repository.dataSource;
 
-import org.labs.ej.stockMarket.dataSource.exception.EntityNotFoundException;
-import org.labs.ej.stockMarket.dataSource.model.StockData;
+import org.labs.ej.stockMarket.domain.exception.EntityNotFoundException;
+import org.labs.ej.stockMarket.data.model.StockData;
+import org.labs.ej.stockMarket.data.repository.StockDataStore;
 import org.labs.ej.stockMarket.domain.util.IdGenerator;
 import org.slf4j.Logger;
 
