@@ -47,7 +47,7 @@ npm install
 The goal of the file structure here is to be easy to navigate
 
 <a href="https://github.com/eliasjunior/stock-market/blob/main/images/file-structure.png">
-   <img src="img/file-structure.png" alt="file"  width="736px" height="1402px">
+   <img src="img/file-structure.png" alt="file"  width="506px" height="895px">
 </a>
 
 I've separated by "useCases" data, domain, web and UI
